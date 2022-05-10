@@ -1,15 +1,26 @@
-<script setup lang="ts"></script>
-
 <template>
   <nav>
     <router-link to="/">Home</router-link>
     {{ ' ' }}
-    <router-link to="/counter">counter</router-link>
+    <router-link to="/ranking">Ranking</router-link>
   </nav>
   <div class="container">
+    {{ activeSellers }}
     <router-view></router-view>
   </div>
 </template>
+
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+import { useSellersStore } from './stores/sellerStore';
+const sellerStore = useSellersStore();
+
+onMounted(async () => {
+  sellerStore.searchSellerFromApi();
+});
+const { activeSellers } = storeToRefs(sellerStore);
+</script>
 
 <style>
 #app {
