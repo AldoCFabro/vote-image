@@ -1,16 +1,20 @@
 <template>
+  <Header></Header>
   <nav>
     <router-link to="/">Home</router-link>
     {{ ' ' }}
     <router-link to="/ranking">Ranking</router-link>
   </nav>
-  <div class="container">
-    {{ activeSellers }}
-    <router-view></router-view>
+  <div class="card">
+    <div class="flex flex-wrap align-items-center justify-content-center card-container">
+      {{ activeSellers }}
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import Header from './components/Header.vue';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useSellersStore } from './stores/sellerStore';
@@ -23,12 +27,22 @@ const { activeSellers } = storeToRefs(sellerStore);
 </script>
 
 <style>
-#app {
+@import 'primevue/resources/themes/saga-blue/theme.css';
+@import 'primevue/resources/primevue.min.css';
+@import 'primeicons/primeicons.css';
+@import '/node_modules/primeflex/primeflex.css';
+
+html,
+body,
+.app {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background-color: #f4f5fb;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f5fb;
 }
 </style>
