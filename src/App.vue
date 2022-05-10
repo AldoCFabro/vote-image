@@ -7,7 +7,6 @@
   </nav>
   <div class="card">
     <div class="flex flex-wrap align-items-center justify-content-center card-container">
-      {{ activeSellers }}
       <router-view></router-view>
     </div>
   </div>
