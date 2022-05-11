@@ -1,12 +1,12 @@
 <template>
-  <div class="header grid align-items-center justify-content-between bg-teal-300 shadow-3">
+  <div class="header grid align-items-center justify-content-between bg-teal-300 shadow-3 z-5">
     <div class="col-12 md:col-6">
       <h1 class="md:ml-3 text-center md:text-left text-white">
         {{ title }}
       </h1>
     </div>
     <div class="hidden md:col-6 md:pr-3 md:block md:text-right">
-      <Menu></Menu>
+      <Menu class="md:inline mr-3 mb-3"></Menu>
     </div>
   </div>
 </template>

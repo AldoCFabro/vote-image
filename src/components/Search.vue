@@ -1,0 +1,22 @@
+<template>
+  <div class="p-fluid grid justify-content-center mt-2 z-5 shadow-6 z-2">
+    <div class="field col-10 md:col-8">
+      <span class="p-float-label p-input-icon-right">
+        <i class="pi pi-search" />
+        <InputText id="inputtext-right" type="text" v-model="searchValue" />
+        <label for="inputtext-right">{{ showLabel }}</label>
+      </span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import InputText from 'primevue/inputtext';
+import { ref, computed } from 'vue';
+const searchValue = ref('');
+const showLabel = computed(() =>
+  searchValue.value === '' ? 'Buscar Imágenes' : `Buscando imágenes para ${searchValue.value} `
+);
+</script>
+
+<style scoped></style>

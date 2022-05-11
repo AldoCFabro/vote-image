@@ -1,10 +1,10 @@
 <template>
-  <div class="layout bg-white">
+  <div class="layout z-0">
     <Header></Header>
-    <div class="relative">
+    <div class="relative bg-white">
       <!-- <ProgressSpinner /> -->
       <router-view></router-view>
-      <Menu class="fixed bottom-0 left-0 p-4 font-bold text-white w-full md:hidden"></Menu>
+      <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
     </div>
   </div>
 </template>
@@ -34,14 +34,12 @@ html,
 body,
 .app {
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
   min-width: 320px;
+  min-height: 100vh;
   max-width: 1800px;
   margin: 0;
   padding: 0;
   margin: auto;
-}
-html {
-  background-color: rgba(44, 58, 66, 0.85);
 }
 </style>
