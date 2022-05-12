@@ -1,8 +1,8 @@
 import { ISeller } from './Seller';
 
 export interface ICompetitor extends ISeller {
-  point?: number;
-  imgs?: string[];
+  point: number;
+  imgs: string[];
 }
 
 export class Competitor implements ICompetitor {

@@ -21,12 +21,17 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import { ref, defineProps, computed, reactive } from 'vue';
+import { defineProps, computed, reactive } from 'vue';
 import { IShowInfoCard } from '../models/Game';
+import { useGameStore } from '../stores/gameStore';
+
+const gameStore = useGameStore();
 const props = defineProps(['item']);
 const item: IShowInfoCard = reactive(props.item);
 const firsName = computed(() => `${item.name.split(' ')[0]}`);
-const vote = () => console.log(item.name, item.id);
+const vote = () => {
+  gameStore.setPointCompetitor(item.id, item.webformatURL);
+};
 </script>
 
 <style scoped></style>

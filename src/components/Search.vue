@@ -19,17 +19,19 @@
 import InputText from 'primevue/inputtext';
 import { ref, computed, watch } from 'vue';
 import { usePixabayStore } from '../stores/pixabayStore';
-
+const emit = defineEmits(['InputEmpty']);
 const searchValue = ref('');
 
 const imgStore = usePixabayStore();
 const searchImage = () => {
   if (searchValue.value === '') return;
+  emit('InputEmpty', false);
   imgStore.getImagesFromServer(searchValue.value);
 };
 
 watch(searchValue, () => {
   if (searchValue.value === '') {
+    emit('InputEmpty', true);
     imgStore.$reset();
   }
 });

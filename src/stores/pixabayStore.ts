@@ -24,10 +24,8 @@ export const usePixabayStore = defineStore('searchImg', {
     async getImagesFromServer(searchQuery: string) {
       const appStore = useAppStore();
       const sellersStore = useSellersStore();
-      const gameStore = useGameStore();
       appStore.setLoading();
       this.images = await getImages(searchQuery, sellersStore.getTotalSeller);
-      console.log('step 4');
       appStore.setLoaded();
     },
   },

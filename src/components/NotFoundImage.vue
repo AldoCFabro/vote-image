@@ -1,13 +1,9 @@
 <template>
-    <div>
-        No se encontrar imágenes según el criterio d búsqueda
-    </div>
+  <div class="mt-6">
+    <p class="mt-6">No se encontrar imágenes según el criterio d búsqueda...</p>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

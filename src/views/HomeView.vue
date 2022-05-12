@@ -1,8 +1,8 @@
 <template>
-  <Search />
+  <Search @Input-Empty="InputSearchEmpty($event)" />
   <div class="result grid justify-content-center ml-auto">
-    <FoundImage v-show="haveImageShow" />
-    <NotFoundImage v-show="!haveImageShow" />
+    <FoundImage v-show="showResult" />
+    <NotFoundImage v-show="!showResult && !emptyInput" />
   </div>
 </template>
 
@@ -10,13 +10,17 @@
 import Search from '../components/Search.vue';
 import FoundImage from '../components/FoundImage.vue';
 import NotFoundImage from '../components/NotFoundImage.vue';
-import { useGameStore } from './../stores/gameStore';
+import { usePixabayStore } from './../stores/pixabayStore';
 import { storeToRefs } from 'pinia';
+import { computed, ref } from 'vue';
 
-import { computed } from 'vue';
-const gameStore = useGameStore();
-const { showImagesCard } = storeToRefs(gameStore);
-const haveImageShow = computed(() => showImagesCard.value.length > 0);
+const emptyInput = ref(true);
+const PixabayStore = usePixabayStore();
+const { getImage } = storeToRefs(PixabayStore);
+const showResult = computed(() => getImage.value.length > 0);
+const InputSearchEmpty = (event: any) => {
+  emptyInput.value = event;
+};
 </script>
 
 <style scoped></style>

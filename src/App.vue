@@ -12,6 +12,10 @@
       <div v-show="!isLoading">
         <router-view></router-view>
       </div>
+
+      <div class="errors" v-show="hasError">
+        {{ hasError }}
+      </div>
       <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
     </div>
   </div>
@@ -24,10 +28,13 @@ import ProgressSpinner from 'primevue/progressspinner';
 import { onMounted } from 'vue';
 import { useSellersStore } from './stores/sellerStore';
 import { useAppStore } from './stores/appStore';
+import { useGameStore } from './stores/gameStore';
 import { storeToRefs } from 'pinia';
 const sellerStore = useSellersStore();
 const appStore = useAppStore();
+const gameStore = useGameStore();
 const { isLoading } = storeToRefs(appStore);
+const { hasError } = storeToRefs(gameStore);
 
 onMounted(async () => {
   await sellerStore.getSellerFromApi();
