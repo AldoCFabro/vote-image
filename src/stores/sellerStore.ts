@@ -1,7 +1,8 @@
-import { defineStore } from 'pinia';
+import { defineStore, storeToRefs } from 'pinia';
 import { StatusEnum } from '../enum/status';
+import { IItemsInvoice, InvoiceSimple } from '../models/InvoiceSimple';
 import { ISeller } from '../models/Seller';
-import { getSellers } from '../services/alegraService';
+import { getSellers, createInvoice } from '../services/alegraService';
 import { useGameStore } from './gameStore';
 
 export const useSellersStore = defineStore('sellers', {
@@ -22,6 +23,21 @@ export const useSellersStore = defineStore('sellers', {
       this.filterActiveSeller();
       const gameStore = useGameStore();
       gameStore.setCompetitors(this.activeSellers);
+    },
+    async createInvoice() {
+      const GameStore = useGameStore();
+      const invoice = new InvoiceSimple();
+      const sellerId = GameStore.getWinner?.id;
+      invoice.seller = sellerId;
+      const itemInvoice: IItemsInvoice = {
+        id: 1,
+        price: 0,
+        quantity: GameStore.getWinner?.point ? GameStore.getWinner?.point : 0,
+      };
+      invoice.items?.push(itemInvoice);
+      console.log(invoice);
+      const res = await createInvoice(invoice);
+      console.log('response', res);
     },
   },
 });

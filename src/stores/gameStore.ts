@@ -42,7 +42,7 @@ export const useGameStore = defineStore('game', {
       this.checkWinner();
     },
     checkWinner() {
-      const isWinner = this.competitors.find((competitor) => competitor.point > 20);
+      const isWinner = this.competitors.find((competitor) => competitor.point > 1);
       if (isWinner) {
         this.winner = isWinner;
       }

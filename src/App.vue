@@ -13,9 +13,9 @@
         <router-view></router-view>
       </div>
 
-      <div class="errors" v-show="hasError">
+      <!--       <div class="errors" v-show="hasError">
         {{ hasError }}
-      </div>
+      </div> -->
       <WinnerModal />
       <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
     </div>

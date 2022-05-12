@@ -15,12 +15,16 @@ import Button from 'primevue/button';
 import { storeToRefs } from 'pinia';
 import { computed} from 'vue';
 import { useGameStore } from "./../stores/gameStore";
+import { useSellersStore } from "./../stores/sellerStore";
 
 const gameStore = useGameStore()
+const sellersStore = useSellersStore()
 const {getWinner} = storeToRefs(gameStore)
+
 let open =  computed(()=>getWinner.value != null)
 
 const closeModal = () => {
+  sellersStore.createInvoice()
  gameStore.reset()
 };
 </script>
