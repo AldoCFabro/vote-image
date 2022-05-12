@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import { sortBy } from 'lodash';
 import { Competitor, ICompetitor } from '../models/Competitor';
 import { IGameState } from '../models/Game';
 import { ISeller } from '../models/Seller';
