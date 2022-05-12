@@ -11,6 +11,7 @@ export const useGameStore = defineStore('game', {
       competitors: [],
       winner: null,
       hasError: '',
+      message: '',
     } as IGameState),
   getters: {
     getWinner(state) {
@@ -37,10 +38,17 @@ export const useGameStore = defineStore('game', {
         if (competitor.id === id) {
           if (competitor.imgs.includes(urlImage)) {
             this.hasError = 'esta imagen ya fue votada';
+            setTimeout(() => {
+              this.hasError = '';
+            }, 2000);
             return competitor;
           }
           competitor.point += 3;
           competitor.imgs.push(urlImage);
+          this.message = `Votaste la imagen de ${competitor.name}`;
+          setTimeout(() => {
+            this.message = '';
+          }, 2000);
         }
         return competitor;
       });

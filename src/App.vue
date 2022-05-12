@@ -13,11 +13,23 @@
         <router-view></router-view>
       </div>
 
-      <!--       <div class="errors" v-show="hasError">
+      <Message
+        v-show="hasError.length"
+        severity="error"
+        class="fixed top-0 font-bold z-6 align-content-center"
+      >
         {{ hasError }}
-      </div> -->
+      </Message>
+      <Message
+        v-show="message.length"
+        severity="info"
+        class="fixed top-0 font-bold z-6 align-content-center"
+      >
+        {{ message }}
+      </Message>
+
       <WinnerModal />
-      <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
+      <Menu class="fixed bottom-0 font-bold text-white w-full md:hidden z-5"></Menu>
     </div>
   </div>
 </template>
@@ -26,6 +38,7 @@
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import ProgressSpinner from 'primevue/progressspinner';
+import Message from 'primevue/message';
 import WinnerModal from './components/WinnerModal.vue';
 import { onMounted } from 'vue';
 import { useSellersStore } from './stores/sellerStore';
@@ -36,7 +49,7 @@ const sellerStore = useSellersStore();
 const appStore = useAppStore();
 const gameStore = useGameStore();
 const { isLoading } = storeToRefs(appStore);
-const { hasError } = storeToRefs(gameStore);
+const { hasError, message } = storeToRefs(gameStore);
 
 onMounted(async () => {
   await sellerStore.getSellerFromApi();

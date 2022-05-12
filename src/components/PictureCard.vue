@@ -4,12 +4,12 @@
       <picture>
         <img
           style="height: 330px; object-fit: cover; padding: 1rem"
-          :src="item.webformatURL"
+          :src="props.item.webformatURL"
           alt="imagen a votar"
         />
       </picture>
     </template>
-    <template #title>{{ item.name }}</template>
+    <template #title>{{ props.item.name }}</template>
     <template #footer>
       <Button class="w-full justify-content-center" @click="vote">
         Votar imagen de {{ firsName }}
@@ -21,16 +21,15 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import { computed, reactive } from 'vue';
-import { IShowInfoCard } from '../models/Game';
+import { computed, reactive, ref } from 'vue';
 import { useGameStore } from '../stores/gameStore';
 
 const gameStore = useGameStore();
-const props = defineProps(['item']);
-const item: IShowInfoCard = reactive(props.item);
-const firsName = computed(() => `${item.name.split(' ')[0]}`);
+const props = defineProps({ item: { type: Object, required: true, default: () => [] } });
+const item = reactive(props.item);
+const firsName = computed(() => (item.name ? `${item.name.split(' ')[0]}` : ''));
 const vote = () => {
-  gameStore.setPointCompetitor(item.id, item.webformatURL);
+  gameStore.setPointCompetitor(props.item.id, props.item.webformatURL);
 };
 </script>
 

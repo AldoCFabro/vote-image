@@ -9,4 +9,5 @@ export interface IGameState {
   competitors: Array<ICompetitor>;
   winner: ICompetitor | null;
   hasError: string;
+  message: string;
 }
