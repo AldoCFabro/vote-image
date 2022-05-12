@@ -28,5 +28,8 @@ export const usePixabayStore = defineStore('searchImg', {
       this.images = await getImages(searchQuery, sellersStore.getTotalSeller);
       appStore.setLoaded();
     },
+    reset() {
+      this.images = [];
+    },
   },
 });

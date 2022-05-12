@@ -7,7 +7,6 @@ export interface IShowInfoCard {
 }
 export interface IGameState {
   competitors: Array<ICompetitor>;
-  showImagesCard: Array<IShowInfoCard>;
-  highScore: number;
+  winner: ICompetitor | null;
   hasError: string;
 }

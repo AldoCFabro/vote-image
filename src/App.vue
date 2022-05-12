@@ -16,6 +16,7 @@
       <div class="errors" v-show="hasError">
         {{ hasError }}
       </div>
+      <WinnerModal />
       <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
     </div>
   </div>
@@ -25,6 +26,7 @@
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import ProgressSpinner from 'primevue/progressspinner';
+import WinnerModal from './components/WinnerModal.vue';
 import { onMounted } from 'vue';
 import { useSellersStore } from './stores/sellerStore';
 import { useAppStore } from './stores/appStore';

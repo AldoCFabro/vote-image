@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Button from 'primevue/button';
-import { defineProps, computed, reactive } from 'vue';
+import { computed, reactive } from 'vue';
 import { IShowInfoCard } from '../models/Game';
 import { useGameStore } from '../stores/gameStore';
 

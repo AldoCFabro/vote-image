@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import PictureCard from '../components/PictureCard.vue';
-import { useGameStore } from '../stores/gameStore';
 import { usePixabayStore } from '../stores/pixabayStore';
 
 const PixabayStore = usePixabayStore();

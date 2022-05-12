@@ -2,9 +2,20 @@ import { defineStore } from 'pinia';
 import { Competitor, ICompetitor } from '../models/Competitor';
 import { IGameState } from '../models/Game';
 import { ISeller } from '../models/Seller';
+import { usePixabayStore } from '../stores/pixabayStore';
 
 export const useGameStore = defineStore('game', {
-  state: () => ({ competitors: [], showImagesCard: [], highScore: 0, hasError: '' } as IGameState),
+  state: () =>
+    ({
+      competitors: [],
+      winner: null,
+      hasError: '',
+    } as IGameState),
+  getters: {
+    getWinner(state) {
+      return state.winner;
+    },
+  },
   actions: {
     setCompetitors(sellers: ISeller[]) {
       sellers.map((seller) => {
@@ -26,15 +37,20 @@ export const useGameStore = defineStore('game', {
           competitor.point += 3;
           competitor.imgs.push(urlImage);
         }
-        if (competitor.point > this.highScore) {
-          this.highScore = competitor.point;
-        }
         return competitor;
       });
       this.checkWinner();
     },
     checkWinner() {
-      console.log('checkWinner');
+      const isWinner = this.competitors.find((competitor) => competitor.point > 20);
+      if (isWinner) {
+        this.winner = isWinner;
+      }
+    },
+    reset() {
+      const pixabayStore = usePixabayStore();
+      this.winner = null;
+      pixabayStore.reset();
     },
   },
 });
