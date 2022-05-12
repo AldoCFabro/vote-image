@@ -8,6 +8,7 @@
           type="text"
           v-model="searchValue"
           @keyup.enter="searchImage"
+          @click="clear"
         />
         <label for="inputtext-right">{{ showLabel }}</label>
       </span>
@@ -21,6 +22,8 @@ import { ref, computed, watch } from 'vue';
 import { usePixabayStore } from '../stores/pixabayStore';
 const emit = defineEmits(['InputEmpty']);
 const searchValue = ref('');
+
+const clear = () => (searchValue.value = '');
 
 const imgStore = usePixabayStore();
 const searchImage = () => {
