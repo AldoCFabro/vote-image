@@ -7,7 +7,7 @@
     </router-link>
 
     <router-link class="text-white mx-3 p-2" to="/ranking">
-      <i class="pi pi-check font-bold text-4xl md:text-xl">
+      <i class="pi pi-list font-bold text-4xl md:text-xl">
         <span class="pl-2 hidden md:inline">Ranking</span>
       </i>
     </router-link>

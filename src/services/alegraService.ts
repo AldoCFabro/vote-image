@@ -9,10 +9,11 @@ export const getSellers = async () => {
   return response.data;
 };
 
-export function createInvoice(data: IInvoiceSimple) {
-  return request({
+export async function createInvoice(data: IInvoiceSimple) {
+  const response: any = await request({
     url: 'invoices',
     method: 'post',
     data,
   });
+  return response.data;
 }

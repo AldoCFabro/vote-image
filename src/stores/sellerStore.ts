@@ -6,10 +6,13 @@ import { getSellers, createInvoice } from '../services/alegraService';
 import { useGameStore } from './gameStore';
 
 export const useSellersStore = defineStore('sellers', {
-  state: () => ({ allSellers: [], activeSellers: [] }),
+  state: () => ({ allSellers: [], activeSellers: [], invoice: {} }),
   getters: {
     getTotalSeller: (state: any) => {
       return state.activeSellers.length;
+    },
+    getInvoice: (state: any) => {
+      return state.invoice;
     },
   },
   actions: {
@@ -35,9 +38,8 @@ export const useSellersStore = defineStore('sellers', {
         quantity: GameStore.getWinner?.point ? GameStore.getWinner?.point : 0,
       };
       invoice.items?.push(itemInvoice);
-      console.log(invoice);
       const res = await createInvoice(invoice);
-      console.log('response', res);
+      this.invoice = res;
     },
   },
 });

@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
+import { sortBy } from 'lodash';
 import { Competitor, ICompetitor } from '../models/Competitor';
 import { IGameState } from '../models/Game';
 import { ISeller } from '../models/Seller';
 import { usePixabayStore } from '../stores/pixabayStore';
+import { useSellersStore } from './sellerStore';
 
 export const useGameStore = defineStore('game', {
   state: () =>
@@ -14,6 +16,10 @@ export const useGameStore = defineStore('game', {
   getters: {
     getWinner(state) {
       return state.winner;
+    },
+    getSortCompetitors(state) {
+      const a = [...state.competitors];
+      return a.sort((a, b) => a.point - b.point).reverse();
     },
   },
   actions: {
@@ -42,14 +48,19 @@ export const useGameStore = defineStore('game', {
       this.checkWinner();
     },
     checkWinner() {
-      const isWinner = this.competitors.find((competitor) => competitor.point > 1);
+      const isWinner = this.competitors.find((competitor) => competitor.point > 20);
       if (isWinner) {
         this.winner = isWinner;
+        const sellersStore = useSellersStore();
+        sellersStore.createInvoice();
       }
     },
     reset() {
       const pixabayStore = usePixabayStore();
-      this.winner = null;
+      this.$reset();
+      const sellersStore = useSellersStore();
+      const activeSellers = sellersStore.activeSellers;
+      this.setCompetitors(activeSellers);
       pixabayStore.reset();
     },
   },

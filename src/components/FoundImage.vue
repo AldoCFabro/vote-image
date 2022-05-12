@@ -1,5 +1,5 @@
 <template>
-  <div v-for="item in images">
+  <div v-for="item in images" :key="item.id">
     <PictureCard class="w-25rem md:w-20rem" :item="item" />
   </div>
 </template>
