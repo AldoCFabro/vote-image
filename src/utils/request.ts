@@ -30,8 +30,7 @@ request.interceptors.request.use(
     return request;
   },
   (error) => {
-    // Do something with request error
-    console.debug(error); // for debug
+    console.debug(error);
     return Promise.reject(error);
   }
 );

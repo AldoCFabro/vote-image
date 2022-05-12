@@ -1,9 +1,17 @@
 <template>
   <div class="layout z-0">
-    <Header></Header>
-    <div class="relative bg-white">
-      <!-- <ProgressSpinner /> -->
-      <router-view></router-view>
+    <Header />
+    <div class="relative bg-white mb-8">
+      <div
+        v-show="isLoading"
+        class="w-full align-content-center min-h-screen"
+        :class="{ 'flex': isLoading }"
+      >
+        <ProgressSpinner class="justify-content-center align-self-center" />
+      </div>
+      <div v-show="!isLoading">
+        <router-view></router-view>
+      </div>
       <Menu class="fixed bottom-0 left-0 font-bold text-white w-full md:hidden"></Menu>
     </div>
   </div>
@@ -13,15 +21,17 @@
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import ProgressSpinner from 'primevue/progressspinner';
-import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useSellersStore } from './stores/sellerStore';
+import { useAppStore } from './stores/appStore';
+import { storeToRefs } from 'pinia';
 const sellerStore = useSellersStore();
+const appStore = useAppStore();
+const { isLoading } = storeToRefs(appStore);
 
 onMounted(async () => {
-  sellerStore.searchSellerFromApi();
+  await sellerStore.getSellerFromApi();
 });
-const { activeSellers } = storeToRefs(sellerStore);
 </script>
 
 <style>

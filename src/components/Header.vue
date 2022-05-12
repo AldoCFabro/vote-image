@@ -1,5 +1,5 @@
 <template>
-  <div class="header grid align-items-center justify-content-between bg-teal-300 shadow-3 z-5">
+  <div class="header grid align-items-center justify-content-between bg-teal-300 shadow-3 z-5 mb-5">
     <div class="col-12 md:col-6">
       <h1 class="md:ml-3 text-center md:text-left text-white">
         {{ title }}

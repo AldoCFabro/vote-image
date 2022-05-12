@@ -3,7 +3,12 @@
     <div class="field col-10 md:col-8">
       <span class="p-float-label p-input-icon-right">
         <i class="pi pi-search" />
-        <InputText id="inputtext-right" type="text" v-model="searchValue" />
+        <InputText
+          id="inputtext-right"
+          type="text"
+          v-model="searchValue"
+          @keyup.enter="searchImage"
+        />
         <label for="inputtext-right">{{ showLabel }}</label>
       </span>
     </div>
@@ -12,8 +17,23 @@
 
 <script setup lang="ts">
 import InputText from 'primevue/inputtext';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { usePixabayStore } from '../stores/pixabayStore';
+
 const searchValue = ref('');
+
+const imgStore = usePixabayStore();
+const searchImage = () => {
+  if (searchValue.value === '') return;
+  imgStore.getImagesFromServer(searchValue.value);
+};
+
+watch(searchValue, () => {
+  if (searchValue.value === '') {
+    imgStore.$reset();
+  }
+});
+
 const showLabel = computed(() =>
   searchValue.value === '' ? 'Buscar Imágenes' : `Buscando imágenes para ${searchValue.value} `
 );

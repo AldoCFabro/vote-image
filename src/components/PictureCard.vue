@@ -4,39 +4,29 @@
       <picture>
         <img
           style="height: 330px; object-fit: cover; padding: 1rem"
-          srcset="https://cdn.pixabay.com/photo/2022/02/11/04/46/darter-7006544_960_720.jpg"
-          alt="Image Text"
+          :src="item.webformatURL"
+          alt="imagen a votar"
         />
       </picture>
     </template>
-    <template #title>Advanced Card</template>
-    <template #content>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
-    </template>
-    <template #footer class="p-0">
-      <i
-        class="pi font-bold text-4xl md:text-6x"
-        :class="{ 'pi-heart': !classHeart, 'pi-heart-fill': classHeart }"
-        @click="like"
-      ></i>
+    <template #title>{{ item.name }}</template>
+    <template #footer>
+      <Button class="w-full justify-content-center" @click="vote">
+        Votar imagen de {{ firsName }}
+      </Button>
     </template>
   </Card>
 </template>
 
 <script setup lang="ts">
 import Card from 'primevue/card';
-import { ref, computed } from 'vue';
-const heartFill = ref(false);
-const classHeart = computed(() => heartFill.value === true);
-const like = () => (heartFill.value = !heartFill.value);
+import Button from 'primevue/button';
+import { ref, defineProps, computed, reactive } from 'vue';
+import { IShowInfoCard } from '../models/Game';
+const props = defineProps(['item']);
+const item: IShowInfoCard = reactive(props.item);
+const firsName = computed(() => `${item.name.split(' ')[0]}`);
+const vote = () => console.log(item.name, item.id);
 </script>
 
-<style scoped>
-div > .p-card-body {
-  padding: 0;
-}
-div .p-card-footer i {
-  color: red;
-  padding: 10px;
-}
-</style>
+<style scoped></style>

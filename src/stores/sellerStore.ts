@@ -2,26 +2,26 @@ import { defineStore } from 'pinia';
 import { StatusEnum } from '../enum/status';
 import { ISeller } from '../models/Seller';
 import { getSellers } from '../services/alegraService';
+import { useGameStore } from './gameStore';
 
 export const useSellersStore = defineStore('sellers', {
   state: () => ({ allSellers: [], activeSellers: [] }),
   getters: {
-    getSellerActive: (state: any) => {
-      return state.allSellers.filter((seller: ISeller) => seller.status === StatusEnum.active);
+    getTotalSeller: (state: any) => {
+      return state.activeSellers.length;
     },
   },
   actions: {
-    addSellerPoints(points: number) {
-      // todo add seller points
-    },
     filterActiveSeller() {
       this.activeSellers = this.allSellers.filter(
         (seller: ISeller) => seller.status === StatusEnum.active
       );
     },
-    async searchSellerFromApi() {
+    async getSellerFromApi() {
       this.allSellers = await getSellers();
       this.filterActiveSeller();
+      const gameStore = useGameStore();
+      gameStore.setCompetitors(this.activeSellers);
     },
   },
 });
