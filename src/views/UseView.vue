@@ -14,7 +14,7 @@
           te queremos invitar a participar de un concurso que consiste en buscar y votar la imagen
           que más te guste. Cada voto equivale a 3 puntos para el vendedor. El vendedor que complete
           20 puntos ganará la carrera y el codiciado premio es la posibilidad de crear una factura
-          en Alegra con. ¡Empecemos!
+          en Alegra. ¡Empecemos!
         </p>
       </template>
     </Card>
