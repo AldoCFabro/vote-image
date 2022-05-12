@@ -16,14 +16,14 @@
       <Message
         v-show="hasError.length"
         severity="error"
-        class="fixed top-0 font-bold z-6 align-content-center"
+        class="fixed top-0 right-0 font-bold z-6 align-content-center"
       >
         {{ hasError }}
       </Message>
       <Message
         v-show="message.length"
         severity="info"
-        class="fixed top-0 font-bold z-6 align-content-center"
+        class="fixed top-0 right-0 font-bold z-6 align-content-center"
       >
         {{ message }}
       </Message>
