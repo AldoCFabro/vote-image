@@ -11,6 +11,11 @@
         <span class="pl-2 hidden md:inline">Ranking</span>
       </i>
     </router-link>
+    <router-link class="text-white mx-3 p-2" to="/use">
+      <i class="pi pi-question-circle font-bold text-4xl md:text-xl">
+        <span class="pl-2 hidden md:inline">Ayuda</span>
+      </i>
+    </router-link>
   </nav>
 </template>
 

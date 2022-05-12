@@ -9,7 +9,7 @@
         />
       </picture>
     </template>
-    <template #title>{{ props.item.name }}</template>
+    <template #title>Vendedor: {{ props.item.name }}</template>
     <template #footer>
       <Button class="w-full justify-content-center" @click="vote">
         Votar imagen de {{ firsName }}

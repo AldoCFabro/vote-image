@@ -11,6 +11,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Ranking',
     component: () => import('../views/RankingView.vue'),
   },
+  {
+    path: '/use',
+    name: 'Use',
+    component: () => import('../views/UseView.vue'),
+  },
 ];
 
 const router = createRouter({
