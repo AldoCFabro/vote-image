@@ -1,7 +1,7 @@
 <template>
   <Search @Input-Empty="InputSearchEmpty($event)" />
-  <div class="result grid justify-content-center ml-auto">
-    <FoundImage v-show="showResult" />
+  <div class="result w-full flex flex-wrap justify-content-center">
+    <FoundImage class="w-full flex flex-wrap justify-content-center" v-show="showResult" />
     <NotFoundImage v-show="!showResult && !emptyInput" />
   </div>
 </template>
